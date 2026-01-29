@@ -1,15 +1,14 @@
-import useGetPokemon from "@/hooks/use-get-pokemon";
 import { Badge } from "./ui/badge";
 import { cn } from "@/lib/utils";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import type { ReactNode } from "react";
+import type { Pokemon } from "@/types/pokemon";
 
 interface SpriteProps {
   sprite: string;
@@ -51,7 +50,8 @@ interface Props {
 }
 
 export default function DetailsPage({ species, children }: Props) {
-  const { data, error } = useGetPokemon(species);
+  const data = {} as Pokemon;
+  const error = undefined;
 
   if (error) return <p>Error: {error.message} :/</p>;
 
@@ -61,7 +61,7 @@ export default function DetailsPage({ species, children }: Props) {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="capitalize">{data?.name}</DialogTitle>
-          </DialogHeader>
+        </DialogHeader>
         <div className="flex gap-2 mb-4">
           <Sprite sprite={data?.sprites?.front_default ?? ""} label="Default" />
           <Sprite sprite={data?.sprites?.front_shiny ?? ""} label="Shiny" />
@@ -71,7 +71,7 @@ export default function DetailsPage({ species, children }: Props) {
           <Attribute label="Weight" value={data?.weight} />
           <Attribute
             label="Abilities"
-            value={data?.abilities.map(({ ability }) => (
+            value={data?.abilities?.map(({ ability }) => (
               <Badge variant="secondary" key={ability.name}>
                 {ability.name}
               </Badge>
@@ -79,7 +79,7 @@ export default function DetailsPage({ species, children }: Props) {
           />
           <Attribute
             label="Types"
-            value={data?.types.map(({ type }) => (
+            value={data?.types?.map(({ type }) => (
               <Badge variant="secondary" key={type.name}>
                 {type.name}
               </Badge>

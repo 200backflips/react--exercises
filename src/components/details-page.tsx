@@ -53,7 +53,7 @@ export default function DetailsPage({ species, children }: Props) {
   const data = {} as Pokemon;
   const error = undefined;
 
-  if (error) return <p>Error: {error.message} :/</p>;
+  if (error) return <p>Error: {error?.message} :/</p>;
 
   return (
     <Dialog>

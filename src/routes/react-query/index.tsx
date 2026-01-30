@@ -74,7 +74,7 @@ function RouteComponent() {
               >
                 {data?.name}
               </Badge>
-              <img src={data?.sprites?.front_default ?? ""} alt="pokemon" />
+              <img src={data?.sprites?.front_default} alt="pokemon" />
             </>
           ) : (
             <div className="size-24 px-4">

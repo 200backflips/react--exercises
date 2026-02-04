@@ -136,11 +136,17 @@ function RouteComponent() {
             <Button variant="secondary">Ladda upp</Button>
           </FieldSet>
         </form>
-        <p className="flex items-center justify-center w-full min-h-6 mt-7">{isLoading ? <LoaderCircleIcon className="size-4 animate-spin" /> : transcript ? (
-          <>
-            <strong>Utskrift:</strong> <span>{transcript}</span>
-          </>
-        ) : "Se ditt resultat här"}</p>
+        <div className="flex items-center justify-center gap-1 w-full min-h-6 mt-7">
+          {isLoading ? (
+            <LoaderCircleIcon className="size-4 animate-spin" />
+          ) : transcript ? (
+            <>
+              <strong>Utskrift:</strong> <span>{transcript}</span>
+            </>
+          ) : (
+            "Se ditt resultat här"
+          )}
+        </div>
       </CardContent>
     </Card>
   );

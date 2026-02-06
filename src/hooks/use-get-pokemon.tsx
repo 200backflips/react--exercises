@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import type { Pokemon } from "@/types/pokemon";
-import { getPokemon } from "@/lib/query";
+import { getPokemon } from "@/lib/queries";
 
 const useGetPokemon = (species: string) =>
   useQuery<Pokemon>({

@@ -1,6 +1,6 @@
 import type { Pokemon } from "@/types/pokemon";
 import { create } from "zustand";
-import { getPokemon } from "./query";
+import { getPokemon } from "./queries";
 
 interface Boats {
   boats: number;

@@ -18,7 +18,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-import { BirdhouseIcon, SpeechIcon } from "lucide-react";
+import { BirdhouseIcon, SpeechIcon, Table2Icon } from "lucide-react";
 import ReduxIcon from "@/assets/redux";
 import ZustandIcon from "@/assets/zustand";
 import TanstackQueryIcon from "@/assets/tanstack-query";
@@ -62,6 +62,17 @@ const sidebarSections = [
         path: "/speech-2-text",
         icon: SpeechIcon,
         tooltip: "Konverterar wav-filer till text",
+      },
+    ],
+  },
+  {
+    title: "Optimering",
+    items: [
+      {
+        title: "The List",
+        path: "/the-list?country=India",
+        icon: Table2Icon,
+        tooltip: "Skapa en tabell med paginering för optimal prestanda",
       },
     ],
   },

@@ -21,9 +21,10 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { postFile } from "@/lib/query";
+import { postFile } from "@/lib/queries";
 import { useState } from "react";
 import { LoaderCircleIcon } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 export const Route = createFileRoute("/speech-2-text/")({
   component: RouteComponent,
@@ -56,7 +57,7 @@ function RouteComponent() {
 
   return (
     <Card className="w-full">
-      <CardContent>
+      <CardContent className="flex flex-col gap-8">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -136,7 +137,8 @@ function RouteComponent() {
             <Button variant="secondary">Ladda upp</Button>
           </FieldSet>
         </form>
-        <div className="flex items-center justify-center gap-1 w-full min-h-6 mt-7">
+        <Separator />
+        <div className="flex items-center justify-center gap-1 w-full min-h-6">
           {isLoading ? (
             <LoaderCircleIcon className="size-4 animate-spin" />
           ) : transcript ? (
@@ -144,7 +146,7 @@ function RouteComponent() {
               <strong>Utskrift:</strong> <span>{transcript}</span>
             </>
           ) : (
-            "Se ditt resultat här"
+            "Se din utskrift här"
           )}
         </div>
       </CardContent>

@@ -25,7 +25,7 @@ import TanstackQueryIcon from "@/assets/tanstack-query";
 
 const sidebarSections = [
   {
-    title: "Global state vs. caching",
+    title: "Kontrollpanel",
     items: [
       {
         title: "Startsida",
@@ -33,6 +33,11 @@ const sidebarSections = [
         icon: BirdhouseIcon,
         tooltip: "Tillbaka till startsidan",
       },
+    ],
+  },
+  {
+    title: "Global state vs. caching",
+    items: [
       {
         title: "Zustand",
         path: "/zustand",

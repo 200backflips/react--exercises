@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const useGetUniversityList = (country: string) =>
   useQuery<University[]>({
-    queryKey: ["university"],
+    queryKey: ["university", country],
     queryFn: () => getUniversityList(country),
   });
 

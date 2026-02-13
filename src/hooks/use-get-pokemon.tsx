@@ -6,7 +6,6 @@ const useGetPokemon = (species: string) =>
   useQuery<Pokemon>({
     queryKey: ["pokemon"],
     queryFn: () => getPokemon(species),
-    // staleTime: 1000 * 60 * 0.5,
   });
 
 export default useGetPokemon;

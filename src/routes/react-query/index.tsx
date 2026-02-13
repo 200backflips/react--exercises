@@ -2,7 +2,7 @@ import DetailsPage from "@/components/details-page";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import type { Pokemon } from "@/types/pokemon";
+import useGetPokemon from "@/hooks/use-get-pokemon";
 import { createFileRoute } from "@tanstack/react-router";
 import { LoaderCircleIcon } from "lucide-react";
 
@@ -11,8 +11,8 @@ export const Route = createFileRoute("/react-query/")({
 });
 
 function RouteComponent() {
-  const data = {} as Pokemon;
-  const isLoadingOrPending = false;
+  const { data, isLoading, isPending, refetch } = useGetPokemon("squirtle");
+  const isLoadingOrPending = isLoading || isPending;
 
   return (
     <>
@@ -74,7 +74,7 @@ function RouteComponent() {
               >
                 {data?.name}
               </Badge>
-              <img src={data?.sprites?.front_default} alt="pokemon" />
+              <img src={data?.sprites?.front_default ?? ""} alt="pokemon" />
             </>
           ) : (
             <div className="size-24 px-4">
@@ -89,7 +89,12 @@ function RouteComponent() {
           )}
         </Card>
       </DetailsPage>
-      <Button variant="outline" onClick={() => {}}>
+      <Button
+        variant="outline"
+        onClick={() => {
+          refetch();
+        }}
+      >
         Hämta pokemon på nytt
       </Button>
     </>

@@ -2,10 +2,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import type { Pokemon } from "@/types/pokemon";
+import { useBoats, usePokemon } from "@/lib/zustand-store";
 import { createFileRoute } from "@tanstack/react-router";
 import { LoaderCircleIcon, ShipIcon } from "lucide-react";
-import { useState } from "react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/zustand/")({
@@ -13,9 +12,8 @@ export const Route = createFileRoute("/zustand/")({
 });
 
 function RouteComponent() {
-  const [boats, setBoats] = useState(0);
-  const pokemon = {} as Pokemon;
-  const isLoadingPokemon = false;
+  const { boats, setBoats } = useBoats();
+  const { pokemon, isLoadingPokemon, setPokemon } = usePokemon();
 
   const handleAddBoats = () => {
     setBoats(boats + 1);
@@ -27,8 +25,7 @@ function RouteComponent() {
   };
 
   const handleSetPokemon = () => {
-    // byt ut den tomma funktionen i toast.promise mot din setter-funktion
-    toast.promise(() => {}, {
+    toast.promise(() => setPokemon("squirtle"), {
       loading: "Hämtar pokémon...",
       success: "Hämtningen är klar!",
       closeButton: true,
@@ -87,7 +84,7 @@ function RouteComponent() {
             >
               {pokemon?.name}
             </Badge>
-            <img src={pokemon?.sprites?.front_default} alt="pokemon" />
+            <img src={pokemon?.sprites?.front_default ?? ""} alt="pokemon" />
           </>
         ) : (
           <div className="size-24 px-4">

@@ -115,7 +115,7 @@ export const supportedLanguages: SupportedLanguages = [
   { value: "ms-MY", label: "Malay (Malaysia)" },
   { value: "mt-MT", label: "Maltese (Malta)" },
   { value: "my-MM", label: "Burmese (Myanmar)" },
-  { value: "nb-NO", label: "Norwegian Bokmal (Norway)" },
+  { value: "nb-NO", label: "Norwegian Bokmål (Norway)" },
   { value: "ne-NP", label: "Nepali (Nepal)" },
   { value: "nl-BE", label: "Dutch (Belgium)" },
   { value: "nl-NL", label: "Dutch (Netherlands)" },

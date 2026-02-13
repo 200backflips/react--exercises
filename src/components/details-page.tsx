@@ -6,9 +6,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import type { ReactNode } from "react";
-import type { Pokemon } from "@/types/pokemon";
+import useGetPokemon from "@/hooks/use-get-pokemon";
 
 interface SpriteProps {
   sprite: string;
@@ -50,13 +51,25 @@ interface Props {
 }
 
 export default function DetailsPage({ species, children }: Props) {
-  const data = {} as Pokemon;
-  const error = undefined;
+  const { data, error } = useGetPokemon(species);
 
-  if (error) return <p>Error: {error?.message} :/</p>;
-
+  if (error) {
+    return (
+      <Dialog>
+        <DialogDescription>Detaljsida för pokémon</DialogDescription>
+        <DialogTrigger>{children}</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="capitalize">Kunde inte hittas</DialogTitle>
+          </DialogHeader>
+          <p>Error: {error.message} :/</p>
+        </DialogContent>
+      </Dialog>
+    );
+  }
   return (
     <Dialog>
+      <DialogDescription>Detaljsida för pokémon</DialogDescription>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>

@@ -7,6 +7,7 @@ import Fact from "@/views/errors/fact";
 import useGetUniversityList from "@/hooks/use-get-university-list";
 import { TrashIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/errors/")({
   component: ErrorsComponent,
@@ -40,7 +41,7 @@ function ErrorsComponent() {
                   variant="outline"
                   size="icon"
                   onClick={() => {
-                    console.log("nada");
+                    toast.error("Inget hände, försök inte igen!");
                   }}
                 >
                   <TrashIcon />

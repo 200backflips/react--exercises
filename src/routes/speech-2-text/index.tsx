@@ -42,8 +42,6 @@ function RouteComponent() {
     onSubmit: async ({ value }) => {
       setIsLoading(true);
       const res = await postFile(value);
-      console.log({ res });
-
       setIsLoading(false);
       setTranscript(res?.data);
     },

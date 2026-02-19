@@ -15,6 +15,7 @@ import { Route as TheListIndexRouteImport } from './routes/the-list/index'
 import { Route as Speech2TextIndexRouteImport } from './routes/speech-2-text/index'
 import { Route as ReduxIndexRouteImport } from './routes/redux/index'
 import { Route as ReactQueryIndexRouteImport } from './routes/react-query/index'
+import { Route as ErrorsIndexRouteImport } from './routes/errors/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,9 +47,15 @@ const ReactQueryIndexRoute = ReactQueryIndexRouteImport.update({
   path: '/react-query/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ErrorsIndexRoute = ErrorsIndexRouteImport.update({
+  id: '/errors/',
+  path: '/errors/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/errors/': typeof ErrorsIndexRoute
   '/react-query/': typeof ReactQueryIndexRoute
   '/redux/': typeof ReduxIndexRoute
   '/speech-2-text/': typeof Speech2TextIndexRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/errors': typeof ErrorsIndexRoute
   '/react-query': typeof ReactQueryIndexRoute
   '/redux': typeof ReduxIndexRoute
   '/speech-2-text': typeof Speech2TextIndexRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/errors/': typeof ErrorsIndexRoute
   '/react-query/': typeof ReactQueryIndexRoute
   '/redux/': typeof ReduxIndexRoute
   '/speech-2-text/': typeof Speech2TextIndexRoute
@@ -76,6 +85,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/errors/'
     | '/react-query/'
     | '/redux/'
     | '/speech-2-text/'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/errors'
     | '/react-query'
     | '/redux'
     | '/speech-2-text'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/errors/'
     | '/react-query/'
     | '/redux/'
     | '/speech-2-text/'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ErrorsIndexRoute: typeof ErrorsIndexRoute
   ReactQueryIndexRoute: typeof ReactQueryIndexRoute
   ReduxIndexRoute: typeof ReduxIndexRoute
   Speech2TextIndexRoute: typeof Speech2TextIndexRoute
@@ -152,11 +165,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReactQueryIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/errors/': {
+      id: '/errors/'
+      path: '/errors'
+      fullPath: '/errors/'
+      preLoaderRoute: typeof ErrorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ErrorsIndexRoute: ErrorsIndexRoute,
   ReactQueryIndexRoute: ReactQueryIndexRoute,
   ReduxIndexRoute: ReduxIndexRoute,
   Speech2TextIndexRoute: Speech2TextIndexRoute,

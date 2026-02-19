@@ -5,15 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Toaster } from "@/components/ui/sonner";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const routeNames: Record<string, string> = {
-  "/": "Startsida",
-  "/react-query": "React Query",
-  "/redux": "Redux",
-  "/speech-2-text": "Speech 2 Text",
-  "/the-list": "The List",
-  "/zustand": "Zustand",
-};
+import { routeNames } from "@/lib/sidebar.tsx";
 
 export const Route = createRootRoute({
   component: RootComponent,

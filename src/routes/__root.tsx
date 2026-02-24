@@ -6,6 +6,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { routeNames } from "@/lib/sidebar.tsx";
+import { MoonIcon, SunDimIcon } from "lucide-react";
+import { useState } from "react";
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -24,6 +26,7 @@ function RootComponent() {
   const isMobile = useIsMobile();
   const { pathname } = useLocation();
   const queryClient = new QueryClient();
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -33,9 +36,20 @@ function RootComponent() {
         <main className="flex-1">
           <div className="flex items-center gap-2 bg-sidebar p-4">
             <SidebarTrigger />
-            <Badge variant="outline" className="bg-white">
-              {routeNames[pathname] ?? "404 - Okänd sida"}
-            </Badge>
+            <div className="flex-1 flex justify-between items-center">
+              <Badge variant="outline">
+                {routeNames[pathname] ?? "404 - Okänd sida"}
+              </Badge>
+              <button
+                className="rounded-full border-2 border-gray-500 dark:border-gray-300 size-8 flex items-center justify-center cursor-pointer"
+                onClick={() => {
+                  document.documentElement.classList.toggle("dark");
+                  setIsDarkTheme(!isDarkTheme);
+                }}
+              >
+                {isDarkTheme ? <MoonIcon /> : <SunDimIcon />}
+              </button>
+            </div>
           </div>
           <div className="h-full flex flex-col items-start gap-6 p-4">
             <Outlet />

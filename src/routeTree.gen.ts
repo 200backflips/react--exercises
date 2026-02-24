@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ZustandIndexRouteImport } from './routes/zustand/index'
 import { Route as TheListIndexRouteImport } from './routes/the-list/index'
+import { Route as SyntaxIndexRouteImport } from './routes/syntax/index'
 import { Route as Speech2TextIndexRouteImport } from './routes/speech-2-text/index'
 import { Route as ReduxIndexRouteImport } from './routes/redux/index'
 import { Route as ReactQueryIndexRouteImport } from './routes/react-query/index'
@@ -30,6 +31,11 @@ const ZustandIndexRoute = ZustandIndexRouteImport.update({
 const TheListIndexRoute = TheListIndexRouteImport.update({
   id: '/the-list/',
   path: '/the-list/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SyntaxIndexRoute = SyntaxIndexRouteImport.update({
+  id: '/syntax/',
+  path: '/syntax/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Speech2TextIndexRoute = Speech2TextIndexRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/react-query/': typeof ReactQueryIndexRoute
   '/redux/': typeof ReduxIndexRoute
   '/speech-2-text/': typeof Speech2TextIndexRoute
+  '/syntax/': typeof SyntaxIndexRoute
   '/the-list/': typeof TheListIndexRoute
   '/zustand/': typeof ZustandIndexRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/react-query': typeof ReactQueryIndexRoute
   '/redux': typeof ReduxIndexRoute
   '/speech-2-text': typeof Speech2TextIndexRoute
+  '/syntax': typeof SyntaxIndexRoute
   '/the-list': typeof TheListIndexRoute
   '/zustand': typeof ZustandIndexRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/react-query/': typeof ReactQueryIndexRoute
   '/redux/': typeof ReduxIndexRoute
   '/speech-2-text/': typeof Speech2TextIndexRoute
+  '/syntax/': typeof SyntaxIndexRoute
   '/the-list/': typeof TheListIndexRoute
   '/zustand/': typeof ZustandIndexRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/react-query/'
     | '/redux/'
     | '/speech-2-text/'
+    | '/syntax/'
     | '/the-list/'
     | '/zustand/'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/react-query'
     | '/redux'
     | '/speech-2-text'
+    | '/syntax'
     | '/the-list'
     | '/zustand'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/react-query/'
     | '/redux/'
     | '/speech-2-text/'
+    | '/syntax/'
     | '/the-list/'
     | '/zustand/'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   ReactQueryIndexRoute: typeof ReactQueryIndexRoute
   ReduxIndexRoute: typeof ReduxIndexRoute
   Speech2TextIndexRoute: typeof Speech2TextIndexRoute
+  SyntaxIndexRoute: typeof SyntaxIndexRoute
   TheListIndexRoute: typeof TheListIndexRoute
   ZustandIndexRoute: typeof ZustandIndexRoute
 }
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/the-list'
       fullPath: '/the-list/'
       preLoaderRoute: typeof TheListIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/syntax/': {
+      id: '/syntax/'
+      path: '/syntax'
+      fullPath: '/syntax/'
+      preLoaderRoute: typeof SyntaxIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/speech-2-text/': {
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReactQueryIndexRoute: ReactQueryIndexRoute,
   ReduxIndexRoute: ReduxIndexRoute,
   Speech2TextIndexRoute: Speech2TextIndexRoute,
+  SyntaxIndexRoute: SyntaxIndexRoute,
   TheListIndexRoute: TheListIndexRoute,
   ZustandIndexRoute: ZustandIndexRoute,
 }

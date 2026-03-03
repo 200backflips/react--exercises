@@ -1,4 +1,4 @@
-# 🦍 Frontendutveckling med ramverk - Global state vs. caching
+# 🦍 React-övningar
 
 I den här uppgiften kommer du lära dig om två global state managers, [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction) och [Redux](https://redux.js.org/), om caching med hjälp av [TanStack Query](https://tanstack.com/query/latest) samt hur dessa två koncept skiljer sig, vilka ändamål de lämpar sig för och deras för- och nackdelar.
 

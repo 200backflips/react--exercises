@@ -28,3 +28,19 @@ export const usePokemon = create<UsePokemon>((set) => ({
     set({ isLoadingPokemon: false });
   },
 }));
+
+export type AvailableCountries = "India" | "Sweden" | "Norway";
+
+interface UniversityStore {
+  country: AvailableCountries;
+  name: string;
+  setCountry: (country: AvailableCountries) => void;
+  setName: (name: string) => void;
+}
+
+export const universityStore = create<UniversityStore>((set) => ({
+  country: "India",
+  name: "",
+  setCountry: (country) => set({ country }),
+  setName: (name) => set({ name }),
+}));

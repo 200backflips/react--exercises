@@ -28,10 +28,11 @@ export const postFile = (value: FileRequestBody) => {
   }).then((res) => res.json());
 };
 
-export const getUniversityList = async (country: string) => {
+export const getUniversityList = async (country: string, name?: string) => {
   const url = new URL(`${UNI_DOMAIN_URL}/search`);
   url.search = new URLSearchParams({
     country,
+    ...(name && { name }),
   }).toString();
 
   try {

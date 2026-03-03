@@ -19,7 +19,7 @@ export default function DecoratedCard({
 }: Props) {
   return (
     <AnimatePresence initial={false}>
-      {isVisible ? (
+      {isVisible && (
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           exit={{ opacity: 0, scale: 0.5 }}
@@ -45,7 +45,7 @@ export default function DecoratedCard({
             </CardContent>
           </Card>
         </motion.div>
-      ) : null}
+      )}
     </AnimatePresence>
   );
 }

@@ -1,5 +1,5 @@
 import useGetUniversityList from "@/hooks/use-get-university-list";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import {
   Table,
   TableBody,
@@ -30,15 +30,19 @@ import {
 } from "@/components/ui/select";
 import { useMemo, useState } from "react";
 import { chunk } from "remeda";
+import { universityStore, type AvailableCountries } from "@/lib/zustand-store";
+import { Field, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+
+import { useForm } from "@tanstack/react-form";
 
 export const Route = createFileRoute("/the-list/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const { country } = Route.useSearch();
-  const navigate = useNavigate();
-  const { data } = useGetUniversityList(country);
+  const { country, name, setCountry, setName } = universityStore();
+  const { data } = useGetUniversityList(country, name);
 
   const universitiesTotal = data?.length ?? 0;
   const pageSize = 20;
@@ -47,29 +51,65 @@ function RouteComponent() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  const form = useForm({
+    defaultValues: {
+      name,
+    },
+    onSubmit: async ({ value }) => {
+      setName(value.name);
+    },
+  });
+
   return (
     <>
-      <Select
-        defaultValue={country}
-        onValueChange={(newCountry) => {
-          navigate({
-            to: "/the-list",
-            search: { country: newCountry },
-          });
-        }}
-      >
-        <SelectTrigger>
-          <SelectValue placeholder="Select a country" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Countries</SelectLabel>
-            <SelectItem value="India">India</SelectItem>
-            <SelectItem value="Sweden">Sweden</SelectItem>
-            <SelectItem value="Norway">Norway</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+      <div className="flex items-center justify-start gap-4">
+        <Field>
+          <FieldLabel htmlFor="country">Land</FieldLabel>
+          <Select
+            defaultValue={country}
+            onValueChange={(value: AvailableCountries) => {
+              form.setFieldValue("name", "");
+              setName("");
+              setCountry(value);
+            }}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select a country" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Countries</SelectLabel>
+                <SelectItem value="India">India</SelectItem>
+                <SelectItem value="Sweden">Sweden</SelectItem>
+                <SelectItem value="Norway">Norway</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </Field>
+        <form>
+          <Field>
+            <FieldLabel htmlFor="name">Namn</FieldLabel>
+            <form.Field
+              name="name"
+              asyncDebounceMs={500}
+              children={(field) => (
+                <Input
+                  id="name"
+                  type="text"
+                  name="name"
+                  value={field.state.value}
+                  placeholder="Ange namn"
+                  className="min-w-48"
+                  onChange={(e) => {
+                    field.handleChange(e.target.value);
+                    form.handleSubmit();
+                  }}
+                />
+              )}
+            />
+          </Field>
+        </form>
+      </div>
       <Table>
         <TableCaption>
           {data && universitiesTotal > 0 && country

@@ -31,13 +31,13 @@ function ErrorsComponent() {
         <Cubes />
         <Separator />
         <h4>Strandkort</h4>
-        <DecoratedCard {...beachProps} />
+        <DecoratedCard {...beachProps} isVisible />
         <Separator />
         <Fact />
         <div className="grid grid-cols-4 gap-4">
           {data?.slice(0, 5).map(({ name }) => (
             <Card key={name}>
-              <CardContent className="flex items-center justify-between">
+              <CardContent className="flex items-center justify-between gap-4">
                 <p>{name}</p>
                 <Button
                   variant="outline"

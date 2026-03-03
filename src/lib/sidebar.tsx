@@ -56,7 +56,7 @@ const sidebarSections = [
       },
       {
         title: "The List",
-        path: "/the-list?country=India",
+        path: "/the-list",
         icon: Table2Icon,
         tooltip: "Skapa en tabell med paginering för optimal prestanda",
       },

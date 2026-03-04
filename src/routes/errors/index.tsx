@@ -20,6 +20,7 @@ const beachProps = {
   textContent:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   badgeText: "Look, a beach!",
+  isVisible: true,
 };
 
 function ErrorsComponent() {
@@ -31,7 +32,7 @@ function ErrorsComponent() {
         <Cubes />
         <Separator />
         <h4>Strandkort</h4>
-        <DecoratedCard {...beachProps} isVisible />
+        <DecoratedCard {...beachProps} />
         <Separator />
         <Fact />
         <div className="grid grid-cols-4 gap-4">

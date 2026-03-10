@@ -69,7 +69,7 @@ function RouteComponent() {
           {data && !isLoadingOrPending ? (
             <>
               <Badge
-                variant="outline-peace"
+                variant="outline-peaceful"
                 className="absolute bottom-0 m-2 capitalize"
               >
                 {data?.name}

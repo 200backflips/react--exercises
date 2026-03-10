@@ -23,7 +23,10 @@ const Sprite = ({ sprite, label }: SpriteProps) => (
     })}
   >
     <img src={sprite} alt={label} />
-    <Badge variant="outline-indigo" className="absolute bottom-0 left-0 m-1.5">
+    <Badge
+      variant="outline-peaceful"
+      className="absolute bottom-0 left-0 m-1.5"
+    >
       {label}
     </Badge>
   </div>

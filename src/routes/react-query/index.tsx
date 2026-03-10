@@ -22,7 +22,7 @@ function RouteComponent() {
           href="https://tanstack.com/query/latest/docs/framework/react/quick-start"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-700"
+          className="text-link"
         >
           TanStack/React Query
         </a>{" "}
@@ -32,7 +32,7 @@ function RouteComponent() {
           href="https://pokeapi.co/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-700"
+          className="text-link"
         >
           PokéAPI
         </a>{" "}
@@ -69,7 +69,7 @@ function RouteComponent() {
           {data && !isLoadingOrPending ? (
             <>
               <Badge
-                variant="outline-indigo"
+                variant="outline-peace"
                 className="absolute bottom-0 m-2 capitalize"
               >
                 {data?.name}

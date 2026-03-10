@@ -40,7 +40,7 @@ function RouteComponent() {
           href="https://zustand.docs.pmnd.rs/getting-started/introduction"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-700"
+          className="text-link"
         >
           Zustand
         </a>{" "}
@@ -59,7 +59,7 @@ function RouteComponent() {
           href="https://zustand.docs.pmnd.rs/getting-started/introduction"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-700"
+          className="text-link"
         >
           Zustand
         </a>{" "}
@@ -69,7 +69,7 @@ function RouteComponent() {
           href="https://pokeapi.co/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-700"
+          className="text-link"
         >
           PokéAPI
         </a>{" "}
@@ -79,7 +79,7 @@ function RouteComponent() {
         {pokemon && !isLoadingPokemon ? (
           <>
             <Badge
-              variant="outline-indigo"
+              variant="outline-peaceful"
               className="absolute bottom-0 m-2 capitalize"
             >
               {pokemon?.name}

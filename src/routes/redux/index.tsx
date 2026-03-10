@@ -14,7 +14,7 @@ function RouteComponent() {
           href="https://redux.js.org/introduction/getting-started"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-700"
+          className="text-link"
         >
           Redux
         </a>
@@ -23,7 +23,7 @@ function RouteComponent() {
           href="https://redux.js.org/introduction/getting-started"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-700"
+          className="text-link"
         >
           Redux
         </a>{" "}
